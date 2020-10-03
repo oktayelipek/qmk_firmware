@@ -49,8 +49,7 @@ along with this program. If not, see <http://www.gnu.org/licenses/>.
 
 #ifdef RGBLIGHT_ENABLE
 #define RGB_DI_PIN F6
-#define RGBLIGHT_EFFECT_STATIC_GRADIENT
-#define RGBLIGHT_EFFECT_RAINBOW_SWIRL
+#define RGBLIGHT_ANIMATIONS
 #define RGBLED_NUM 16
 #define RGBLIGHT_HUE_STEP 6
 #define RGBLIGHT_SAT_STEP 6

@@ -34,37 +34,18 @@ along with this program. If not, see <http://www.gnu.org/licenses/>.
 #define TEXTLEFT LALT(LGUI(KC_L))           // Text Align Left
 #define TEXTRIGHT LALT(LGUI(KC_R))          // Text Align Right
 #define TEXTCENTER LALT(LGUI(KC_T))         // Text Align Center
-#define RUNLASTPLUG LALT(LALT(KC_P))        // Run last plugin
+#define RUNLASTPLUG LALT(LGUI(KC_P))        // Run last plugin
 
 
 enum oktiboard_layers {
     _FIGMA,
     _LAB,
-    _EMOJI
+    _TEST
 };
 
 enum custom_keycodes {
     M_AUTOLAY,
     M_COPYSTYLES
-};
-
-enum unicode_name {
-  GRIN, // grinning face 😊
-  TJOY, // tears of joy 😂
-  SMILE, // grining face with smiling eyes 😁
-  HEART, // heart ❤
-  EYERT, // smiling face with heart shaped eyes 😍
-  SMEYE, // smiling face with smiling eyes 😊
-  KISS, // kiss 😘
-  OKHND, // ok hand sign 👌
-  PENSV, // pensive 😔
-  WINK, // wink 😉
-  THMUP, // thumb up 👍
-  PRAY, // pray 🙏
-  CELEB, // celebration 🙌
-  CRY2, // crying face 😢
-  COOL, // smile with sunglasses 😎
-  POO,  // Poo 💩
 };
 
 bool is_copied = false;
@@ -97,13 +78,13 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
 layer_state_t layer_state_set_user(layer_state_t state) {
     switch (get_highest_layer(state)) {
     case _FIGMA:
-      rgblight_sethsv_noeeprom(75,0,130);
+      rgblight_sethsv_noeeprom(RGB_GOLDENROD);
       break;
     case _LAB:
-      rgblight_sethsv_noeeprom(0,100,0);
+      rgblight_sethsv_noeeprom(RGB_TEAL);
       break;
-    case _EMOJI:
-      rgblight_sethsv_noeeprom(128,0,0);
+    case _TEST:
+      rgblight_sethsv_noeeprom(RGB_BLUE);
       break;
   }
   return state;
@@ -145,10 +126,10 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
  */
 
 [_LAB] = LAYOUT_ortho_4x4(
-		_______, _______, EEP_RST, RESET,
-		_______, _______, _______, _______,
-		RGB_TOG, RGB_VAI, RGB_VAD, _______,
-		LOCKSCREEN, _______, _______, TO(_EMOJI)
+		EEP_RST, RESET , _______ ,_______,
+		AU_ON, AU_OFF, _______, _______,
+		RGB_MODE_RAINBOW, RGB_MODE_BREATHE, RGB_MOD, RGB_MODE_PLAIN,
+		LOCKSCREEN, _______, RGB_MODE_GRADIENT, TO(_TEST)
 ),
 
 /* Emoji
@@ -163,10 +144,17 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
  * `---------------------------'
  */
 
-[_EMOJI] = LAYOUT_ortho_4x4(
-		GRIN, TJOY, SMILE, HEART,
-		EYERT, SMEYE, KISS, OKHND,
-		THMUP, CELEB, CRY2, PENSV,
-		POO, COOL, WINK, TO(_FIGMA)
+// [_EMOJI] = LAYOUT_ortho_4x4(
+//		GRIN, TJOY, SMILE, HEART,
+//		EYERT, SMEYE, KISS, OKHND,
+//		THMUP, CELEB, CRY2, PENSV,
+//		POO, COOL, WINK, TO(_FIGMA)
+//),
+
+[_TEST] = LAYOUT_ortho_4x4(
+		KC_A, KC_B, KC_C, KC_D,
+		KC_E, KC_F, KC_G, KC_H,
+		KC_I, KC_J, KC_K, KC_L,
+		KC_M, KC_N, KC_O, TO(_FIGMA)
 ),
 };
