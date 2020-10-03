@@ -78,13 +78,13 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
 layer_state_t layer_state_set_user(layer_state_t state) {
     switch (get_highest_layer(state)) {
     case _FIGMA:
-      rgblight_sethsv_noeeprom(RGB_GOLDENROD);
+      rgblight_sethsv_noeeprom(HSV_PURPLE);
       break;
     case _LAB:
-      rgblight_sethsv_noeeprom(RGB_TEAL);
+      rgblight_sethsv_noeeprom(HSV_CORAL);
       break;
     case _TEST:
-      rgblight_sethsv_noeeprom(RGB_BLUE);
+      rgblight_sethsv_noeeprom(HSV_TEAL);
       break;
   }
   return state;
@@ -126,10 +126,10 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
  */
 
 [_LAB] = LAYOUT_ortho_4x4(
-		EEP_RST, RESET , _______ ,_______,
-		AU_ON, AU_OFF, _______, _______,
+		EEP_RST, RESET , RGB_MODE_KNIGHT ,_______,
+		RGB_VAI, _______, RGB_VAD, RGB_TOG,
 		RGB_MODE_RAINBOW, RGB_MODE_BREATHE, RGB_MOD, RGB_MODE_PLAIN,
-		LOCKSCREEN, _______, RGB_MODE_GRADIENT, TO(_TEST)
+		RGB_MODE_FORWARD, RGB_MODE_RGBTEST, RGB_MODE_GRADIENT, TO(_TEST)
 ),
 
 /* Emoji
